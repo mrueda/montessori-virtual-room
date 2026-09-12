@@ -80,6 +80,11 @@ export const environmentRooms = {
         renderer: "lower-elementary",
         placements: [
           {
+            materialId: "checkerboard",
+            position: [-1.2, 1.23, -2.65],
+            shelf: "Mathematics",
+          },
+          {
             materialId: "stamp-game",
             position: [-3.25, 0.7, -2.65],
             shelf: "Mathematics",
@@ -153,6 +158,11 @@ export const environmentRooms = {
         description: "Investigate, record, discuss, and connect",
         renderer: "upper-elementary",
         placements: [
+          {
+            materialId: "checkerboard",
+            position: [-2.8, 0.7, -2.65],
+            shelf: "Mathematics",
+          },
           {
             materialId: "fraction-insets",
             position: [1.1, 1.13, 0.65],

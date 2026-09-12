@@ -52,8 +52,8 @@
     "transcript": "The World Puzzle Map presents the continents across two hemispheres. Lift a continent by its knob and observe its outline. Compare the shape with the map before returning it. This digital adaptation includes all seven continents, including Antarctica."
   },
   "land-water-forms": {
-    "url": "audio/en/materials/land-water-forms.mp3",
-    "transcript": "Land and Water Forms make contrasting geographic features visible and tangible. The child compares forms such as island and lake, or peninsula and gulf, before adding language."
+    "url": "audio/en/land-water-forms-introduction-v2.mp3",
+    "transcript": "These paired trays reveal contrasting forms of land and water. Pour a little water into the recesses. On one tray, water surrounds an island. On the other, land surrounds a lake. Compare the outlines, then explore the peninsula and gulf, or the isthmus and strait. Real trays offer careful pouring, observation, and conversation with a guide."
   },
   "botany-cabinet": {
     "url": "audio/en/materials/botany-cabinet.mp3",
@@ -80,12 +80,12 @@
     "transcript": "Greeting Practice is a Grace and Courtesy lesson about noticing another person, approaching calmly, greeting with respect, and making space to listen."
   },
   "table-setting": {
-    "url": "audio/en/materials/table-setting.mp3",
-    "transcript": "Table Setting connects care of the shared environment with an orderly sequence. Each object has a clear place, supporting independence and participation in community life."
+    "url": "audio/en/table-setting-introduction-v2.mp3",
+    "transcript": "Preparing a place at the table is a way to care for the community. Carry one object at a time, fold a napkin, and arrange the items needed for the meal. The outline mat shows one example. Homes and schools may use different arrangements and utensils. When the meal is finished, clearing and restoring the objects continues the work."
   },
   "walking-around-mat": {
     "url": "audio/en/materials/walking-around-mat.mp3",
-    "transcript": "Walking Around a Mat helps protect another person\u2019s concentration and work. The child notices the boundary, slows down, leaves space, and continues along a respectful path."
+    "transcript": "Walking Around a Mat helps protect another person’s concentration and work. The child notices the boundary, slows down, leaves space, and continues along a respectful path."
   },
   "cards-counters": {
     "url": "audio/en/materials/cards-counters.mp3",
@@ -102,5 +102,17 @@
   "constructive-triangles": {
     "url": "audio/en/materials/constructive-triangles.mp3",
     "transcript": "Constructive Triangles invite you to compose larger figures. This study uses three pairs from the rectangular box. Move and rotate the pieces until their marked black edges meet. Observe the square, rectangle, and rhombus that appear."
+  },
+  "movable-alphabet": {
+    "url": "audio/en/movable-alphabet-introduction-v2.mp3",
+    "transcript": "The Movable Alphabet gives spoken ideas a visible form. Choose a familiar word together, listen for its sounds, and arrange loose letters on the mat. You can compose your own words, move the letters, and return them to their compartments. An adult can supply the spoken sounds. This is an introduction to composition, not a spelling test."
+  },
+  "checkerboard": {
+    "url": "audio/en/checkerboard-introduction-v2.mp3",
+    "transcript": "The Montessori Checkerboard makes multiplication visible through colored bead bars and decimal place values. Build repeated groups in the squares, gather equal place values, and exchange groups of ten. Each bead takes its value from the square where it rests. This introductory study assists the tile setup and diagonal movement. A Montessori guide can help connect it with the real material."
+  },
+  "metal-insets": {
+    "url": "audio/en/metal-insets-introduction.mp3",
+    "transcript": "Metal Insets invite careful pencil movement and geometric design. Trace inside a frame, then around its matching inset with another pencil. Remove the material and explore lines within the outline. Your drawing can take many forms. This digital study assists the edge, while real pencils and metal provide the grip, pressure, and touch that a screen cannot reproduce."
   }
 }

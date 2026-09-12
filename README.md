@@ -32,7 +32,7 @@ Explore six environments:
 - **Upper Elementary · 9–12 years** — a setting for research, reasoning, and continued material exploration.
 - **Adolescent Community · 12–18 years** — an introduction to study, practical work, and community life.
 
-There are currently **15 interactive activities**, shared across the toddler, Children’s House, and elementary environments. The Nido and adolescent environments are explanatory tours.
+There are currently **20 interactive activities**, shared across the toddler, Children’s House, and elementary environments. The Nido and adolescent environments are explanatory tours.
 
 ## Understand the purpose behind the material
 

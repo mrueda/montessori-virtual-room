@@ -1,3 +1,5 @@
+import { MetalInsetsModel, TableSettingModel } from "./DrawingTableModels";
+import TrayModel from "../activities/land-water-forms/TrayModel";
 import ElementaryMaterialModel, {
   elementaryModelIds,
 } from "./ElementaryMaterialModel";
@@ -27,6 +29,18 @@ export function Box({
   );
 }
 export function MaterialModel({ id }: { id: MaterialId }) {
+  if (id === "metal-insets") return <MetalInsetsModel />;
+  if (id === "table-setting") return <TableSettingModel />;
+  if (id === "land-water-forms")
+    return (
+      <group scale={0.29}>
+        {[0, 1].map((side) => (
+          <group key={side} position={[(side - 0.5) * 2.5, 0, 0]}>
+            <TrayModel pair={0} side={side} level={28} />
+          </group>
+        ))}
+      </group>
+    );
   if (elementaryModelIds.includes(id))
     return <ElementaryMaterialModel id={id} />;
   const study: StudyConfig | undefined = studyConfigs.find(

@@ -4,6 +4,11 @@ import type { StudyConfig } from "../activities/studies/config";
 export default function MaterialArt({ id }: { id: MaterialId }) {
   if (
     [
+      "metal-insets",
+      "table-setting",
+      "movable-alphabet",
+      "checkerboard",
+      "land-water-forms",
       "cards-counters",
       "stamp-game",
       "fraction-insets",

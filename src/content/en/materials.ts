@@ -1,3 +1,5 @@
+import { drawingTableContent } from "./drawing-table";
+import { expansionContent } from "./expansion";
 import { elementaryContent } from "./elementary";
 import type { MaterialContent, MaterialId } from "../../domain/material";
 import { studyMaterialContent } from "./studies";
@@ -334,4 +336,6 @@ export const content = {
   ...coreContent,
   ...studyMaterialContent,
   ...elementaryContent,
+  ...expansionContent,
+  ...drawingTableContent,
 } as Record<MaterialId, MaterialContent>;

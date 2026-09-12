@@ -4,6 +4,46 @@ import type { Material, MaterialId, RoomDefinition } from "../domain/material";
 import { studyConfigs } from "../activities/studies/config";
 const catalogMaterials: Material[] = [
   {
+    id: "metal-insets",
+    area: "Language",
+    ageMonths: [36, 72],
+    activityId: "metal-insets",
+    interaction: "tracing",
+    assets: { kind: "procedural", modelKey: "metal-insets" },
+  },
+  {
+    id: "table-setting",
+    area: "Practical Life",
+    ageMonths: [24, 72],
+    activityId: "table-setting",
+    interaction: "transferring",
+    assets: { kind: "procedural", modelKey: "table-setting" },
+  },
+  {
+    id: "land-water-forms",
+    area: "Culture",
+    ageMonths: [36, 72],
+    activityId: "land-water-forms",
+    interaction: "pouring",
+    assets: { kind: "procedural", modelKey: "land-water-forms" },
+  },
+  {
+    id: "movable-alphabet",
+    area: "Language",
+    ageMonths: [42, 72],
+    activityId: "movable-alphabet",
+    interaction: "transferring",
+    assets: { kind: "procedural", modelKey: "movable-alphabet" },
+  },
+  {
+    id: "checkerboard",
+    area: "Mathematics",
+    ageMonths: [72, 144],
+    activityId: "checkerboard",
+    interaction: "transferring",
+    assets: { kind: "procedural", modelKey: "checkerboard" },
+  },
+  {
     id: "cards-counters",
     area: "Mathematics",
     ageMonths: [42, 108],
@@ -123,14 +163,19 @@ const catalogMaterials: Material[] = [
     interaction: "fitting",
     assets: { kind: "procedural", modelKey: "shape-puzzle" },
   },
-  ...studyConfigs.map((config) => ({
-    id: config.id,
-    area: config.area,
-    ageMonths: config.ageMonths,
-    activityId: config.id,
-    interaction: config.mode,
-    assets: { kind: "procedural" as const, modelKey: config.id },
-  })),
+  ...studyConfigs
+    .filter(
+      (config) =>
+        config.id !== "land-water-forms" && config.id !== "table-setting",
+    )
+    .map((config) => ({
+      id: config.id,
+      area: config.area,
+      ageMonths: config.ageMonths,
+      activityId: config.id,
+      interaction: config.mode,
+      assets: { kind: "procedural" as const, modelKey: config.id },
+    })),
 ];
 export const materials = catalogMaterials.filter((material) =>
   isAvailableMaterial(material.id),
@@ -185,6 +230,11 @@ export const primaryRoom: RoomDefinition = {
       description: "Everyday movements, prepared with care",
       renderer: "practical-life-corner",
       placements: [
+        {
+          materialId: "table-setting",
+          position: [1.9, 0.74, -2.4],
+          shelf: "Practical Life",
+        },
         {
           materialId: "pouring",
           position: [-1.55, 0.78, -2.4],
@@ -248,7 +298,12 @@ export const primaryRoom: RoomDefinition = {
       renderer: "language-corner",
       placements: [
         {
-          materialId: "sandpaper-letters",
+          materialId: "metal-insets",
+          position: [0.7, 0.74, -2.42],
+          shelf: "Language",
+        },
+        {
+          materialId: "movable-alphabet",
           position: [-1.25, 0.74, -2.42],
           shelf: "Language",
           labelHeight: 0.75,
@@ -304,6 +359,11 @@ export const primaryRoom: RoomDefinition = {
       renderer: "art-studio",
       placements: [
         {
+          materialId: "metal-insets",
+          position: [-1.1, 0.74, -2.42],
+          shelf: "Language",
+        },
+        {
           materialId: "color-mixing",
           position: [-1.1, 0.74, -2.42],
           shelf: "Art",
@@ -333,7 +393,7 @@ export const primaryRoom: RoomDefinition = {
         {
           materialId: "table-setting",
           position: [0, 0.74, -2.42],
-          shelf: "Grace and Courtesy",
+          shelf: "Practical Life",
           labelHeight: 0.75,
         },
         {
@@ -363,6 +423,11 @@ export const toddlerRoom: RoomDefinition = {
       description: "A space prepared for movement and independence",
       renderer: "toddler-community-overview",
       placements: [
+        {
+          materialId: "table-setting",
+          position: [2.3, 0.73, 1.8],
+          shelf: "Practical Life",
+        },
         {
           materialId: "transferring",
           position: [-2.55, 0.74, -2.7],

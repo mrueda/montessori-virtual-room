@@ -114,7 +114,7 @@ Accessibility includes HTML material access, native modal focus behavior, semant
 6. **Refinement — baseline begun:** real-device touch testing, keyboard/screen-reader review, loading/error recovery, frame-time and memory profiling, animation respecting reduced motion, educator content review.
 7. **Persistence and adult functionality — planned:** optional local progress with schema versions, reviewed adult resources, localization, additional rooms. A backend is a separate product decision.
 
-The prototype now establishes a path from room exploration to 22 independently manipulable materials. Four further age environments and 28 unique activities are planned for a global total of 50. Content review, real-device evaluation, and refinement remain before treating it as a finished educational resource.
+The prototype now establishes a path from room exploration to 20 accessible interactive materials across six age environments. Twenty is the current release scope; further additions are deferred until educator feedback. Withdrawn drafts do not count as available activities. Content review, real-device evaluation, and refinement remain before treating it as a finished educational resource.
 
 ## Additional activity semantics
 

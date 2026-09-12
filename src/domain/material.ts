@@ -23,6 +23,9 @@ export type Area =
   | "Art"
   | "Grace and Courtesy";
 export type MaterialId =
+  | "metal-insets"
+  | "movable-alphabet"
+  | "checkerboard"
   | "cards-counters"
   | "stamp-game"
   | "fraction-insets"

@@ -10,3 +10,5 @@ __pycache__/
 
 # Local working-session context
 SESSION_NOTES.md
+
+.browser-downloads/

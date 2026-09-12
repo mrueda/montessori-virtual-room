@@ -24,7 +24,7 @@ describe("authenticity availability", () => {
     }
   });
   it("requires references and an explicit limitation for accessible prototypes", () => {
-    expect(materials).toHaveLength(15);
+    expect(materials).toHaveLength(20);
     for (const material of materials) {
       const review = authenticity[material.id as MaterialId];
       expect(review.sources.length).toBeGreaterThan(0);

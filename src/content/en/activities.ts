@@ -1,3 +1,5 @@
+import { drawingTableActivityContent } from "./drawing-table";
+import { expansionActivityContent } from "./expansion";
 import { elementaryActivityContent } from "./elementary";
 import type { MaterialId } from "../../domain/material";
 import { studyActivityContent } from "./studies";
@@ -102,6 +104,8 @@ export const activityContent = {
   ...coreActivityContent,
   ...studyActivityContent,
   ...elementaryActivityContent,
+  ...expansionActivityContent,
+  ...drawingTableActivityContent,
 } as Record<
   MaterialId,
   { instruction: string; guidance: string; completion: string }

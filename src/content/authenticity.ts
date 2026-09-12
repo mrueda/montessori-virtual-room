@@ -1,3 +1,5 @@
+import { drawingTableSources } from "./en/drawing-table";
+import { expansionSources } from "./en/expansion";
 import { elementarySources } from "./en/elementary";
 import type { MaterialId } from "../domain/material";
 
@@ -29,6 +31,22 @@ const unverified = (reason: string): AuthenticityRecord => ({
   sources: [],
 });
 export const authenticity: Record<MaterialId, AuthenticityRecord> = {
+  "metal-insets": prototype(
+    "Five metal-inset figures, separate frame and inset tracing, and free drawing. Stencil edge assistance cannot assess grip or pressure; completion means restoring the materials.",
+    [
+      drawingTableSources.insets,
+      drawingTableSources.design,
+      drawingTableSources.school,
+    ],
+  ),
+  "movable-alphabet": prototype(
+    "English print letters with free composition and optional picture comparison. Sounds remain adult-led; completion means returning the letters, not literacy mastery.",
+    [expansionSources.alphabet, expansionSources.alphabetMaterial],
+  ),
+  checkerboard: prototype(
+    "A 9-by-4 place-value board with repeated bead groups, diagonal gathering, and value-preserving exchanges. Three problems; tile setup and gathering are assisted.",
+    [expansionSources.checker],
+  ),
   "cards-counters": prototype(
     "Numerals and 55 individually placed counters; guided digital positions simplify the physical mat. Review the presentation and readiness with an educator.",
     [elementarySources.counters],
@@ -97,9 +115,9 @@ export const authenticity: Record<MaterialId, AuthenticityRecord> = {
     "Colored rectangles and decorative circles do not represent a continent globe. Restore actual geography and globe exploration.",
     [maps],
   ),
-  "land-water-forms": rebuild(
-    "Text matching omits contrasting physical land/water contours. Model the actual paired forms.",
-    [maps],
+  "land-water-forms": prototype(
+    "Three complementary pairs of shaped trays with shared 2D/3D contours. Water level, pouring, and restoration are simplified. Vocabulary presentation remains adult-led.",
+    [expansionSources.forms],
   ),
   "botany-cabinet": rebuild(
     "Rectangular cards omit leaf-shaped insets, frames, and edge tracing.",
@@ -121,9 +139,9 @@ export const authenticity: Record<MaterialId, AuthenticityRecord> = {
     "Greeting is an established Grace and Courtesy practice; fixed-answer card sorting is not the social practice.",
     [courtesy],
   ),
-  "table-setting": rebuild(
-    "Table setting is established Practical Life work. Replace labeled cards with manipulable utensils and a real arrangement.",
-    [practical],
+  "table-setting": prototype(
+    "Actual dishes, utensils, and a folding napkin with an optional outline mat, in 2D and 3D. One example arrangement; contact physics, carrying and fabric are simplified.",
+    [drawingTableSources.table, drawingTableSources.practical],
   ),
   "walking-around-mat": rebuild(
     "Replace fixed-answer text sequencing with modeled and practiced movement respecting another person's work space.",

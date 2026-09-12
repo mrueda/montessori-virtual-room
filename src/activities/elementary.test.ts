@@ -163,6 +163,7 @@ describe("elementary material invariants", () => {
   });
   it("puts activities in both elementary environments without counting shared work twice", () => {
     expect(materialsForRoom(rooms["6-9y"]).map((m) => m.id)).toEqual([
+      "checkerboard",
       "stamp-game",
       "cards-counters",
       "world-puzzle-map",
@@ -170,6 +171,7 @@ describe("elementary material invariants", () => {
       "constructive-triangles",
     ]);
     expect(materialsForRoom(rooms["9-12y"]).map((m) => m.id)).toEqual([
+      "checkerboard",
       "fraction-insets",
       "constructive-triangles",
     ]);

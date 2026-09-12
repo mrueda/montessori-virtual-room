@@ -15,6 +15,8 @@ export interface ActivityViewProps<S, A> {
 export interface ActivityDefinition<S, A> {
   id: string;
   version: number;
+  /** For open-ended work, completion can mean restoring the material. */
+  completionHeading?: string;
   requiredAssets: string[];
   /** Optional movement example, replayed separately from the learner state. */
   example?: () => { caption: string; state: S }[];

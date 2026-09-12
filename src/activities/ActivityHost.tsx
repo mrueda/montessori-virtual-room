@@ -166,7 +166,7 @@ export default function ActivityHost<S, A>({
           >
             <h2>
               {complete
-                ? "Activity complete"
+                ? (definition.completionHeading ?? "Activity complete")
                 : checked?.state === state
                   ? "A closer look at your work"
                   : "Ready for another look?"}
@@ -206,6 +206,7 @@ export default function ActivityHost<S, A>({
         {demonstrating && definition.example ? (
           <WorkedExample
             definition={definition}
+            View={View}
             onClose={() => setDemonstrating(false)}
           />
         ) : demonstrating && definition.demonstration ? (

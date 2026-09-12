@@ -1,11 +1,15 @@
+import type { ComponentType } from "react";
+import type { ActivityViewProps } from "../../domain/activity";
 import { useEffect, useMemo, useState } from "react";
 import type { ActivityDefinition } from "../../domain/activity";
 export default function WorkedExample<S, A>({
   definition,
   onClose,
+  View: ExampleView,
 }: {
   definition: ActivityDefinition<S, A>;
   onClose: () => void;
+  View?: ComponentType<ActivityViewProps<S, A>>;
 }) {
   const steps = useMemo(() => definition.example!(), [definition]);
   const [index, setIndex] = useState(0),
@@ -21,7 +25,7 @@ export default function WorkedExample<S, A>({
   useEffect(() => {
     if (index === steps.length - 1) setPlaying(false);
   }, [index, steps.length]);
-  const View = definition.View;
+  const View = ExampleView ?? definition.View;
   return (
     <section className="worked-example" aria-label="Moving example">
       <div className="work-controls">

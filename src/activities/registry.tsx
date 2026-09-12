@@ -26,6 +26,17 @@ function launcher<S, A>(
   });
 }
 const coreActivityRegistry = {
+  "metal-insets": launcher("metal-insets", () => import("./metal-insets")),
+  "table-setting": launcher("table-setting", () => import("./table-setting")),
+  "movable-alphabet": launcher(
+    "movable-alphabet",
+    () => import("./movable-alphabet"),
+  ),
+  "land-water-forms": launcher(
+    "land-water-forms",
+    () => import("./land-water-forms"),
+  ),
+  checkerboard: launcher("checkerboard", () => import("./checkerboard")),
   "cards-counters": launcher(
     "cards-counters",
     () => import("./cards-counters"),

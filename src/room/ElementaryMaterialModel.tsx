@@ -1,6 +1,8 @@
 import { useTexture } from "@react-three/drei";
 import type { MaterialId } from "../domain/material";
 export const elementaryModelIds = [
+  "movable-alphabet",
+  "checkerboard",
   "cards-counters",
   "stamp-game",
   "fraction-insets",

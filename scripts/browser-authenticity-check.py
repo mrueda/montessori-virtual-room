@@ -8,7 +8,7 @@ with sync_playwright() as p:
     errors = []
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.goto(os.environ.get('APP_URL', 'http://127.0.0.1:8001/'), wait_until='networkidle')
-    expect(page.locator('.material-card')).to_have_count(10)
+    expect(page.locator('.material-card')).to_have_count(14)
     for removed in ['line-design', 'sandpaper-letters', 'continent-globe']:
         expect(page.locator('.material-card.' + removed)).to_have_count(0)
     expect(page.get_by_label('Classroom views').get_by_role('button', name='Culture', exact=True)).to_have_count(1)
@@ -20,7 +20,7 @@ with sync_playwright() as p:
     expect(page.get_by_role('button', name='Guidance', exact=True)).to_be_visible()
     page.get_by_role('button', name='Back to the classroom').click()
     page.locator('#age-group').select_option('18m-3y')
-    expect(page.locator('.material-card')).to_have_count(3)
+    expect(page.locator('.material-card')).to_have_count(4)
     assert not errors, errors
     browser.close()
 print('PASS: withdrawn drafts absent, remaining classrooms usable, source notes visible')

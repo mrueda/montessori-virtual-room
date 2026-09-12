@@ -125,6 +125,31 @@ export default function ToddlerRoomScene({
           color="#faf7ed"
         />
         <Box at={[0.75, 1.09, -3.2]} size={[4.85, 0.1, 0.38]} color="#dfc7a3" />
+        <group position={[2.3, 0, 1.8]}>
+          <Box at={[0, 0.68, 0]} size={[1.5, 0.08, 1.05]} color="#d8be96" />
+          {[-0.58, 0.58].flatMap((x) =>
+            [-0.37, 0.37].map((z) => (
+              <Box
+                key={`${x}-${z}`}
+                at={[x, 0.34, z]}
+                size={[0.08, 0.68, 0.08]}
+                color="#bd9d70"
+              />
+            )),
+          )}
+          <Box at={[0, 0.36, 0.95]} size={[0.58, 0.07, 0.55]} color="#c8aa7b" />
+          <Box at={[0, 0.62, 1.2]} size={[0.58, 0.52, 0.05]} color="#bd9d70" />
+          {[-0.23, 0.23].flatMap((x) =>
+            [0.73, 1.16].map((z) => (
+              <Box
+                key={`${x}-${z}`}
+                at={[x, 0.17, z]}
+                size={[0.06, 0.34, 0.06]}
+                color="#bd9d70"
+              />
+            )),
+          )}
+        </group>
         <LowShelf position={[-2.55, 0, -2.7]} />
         <LowShelf position={[-3.85, 0, -0.25]} rotation={Math.PI / 2} />
         {/* A few everyday objects and baskets, with room between each work. */}

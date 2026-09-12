@@ -1,6 +1,6 @@
 # Concrete elementary activity modules
 
-Five additions/restorations make 15 unique accessible prototypes. Shared placements count once. Each remains an educational draft requiring educator review.
+This first batch brought the collection to 15 unique accessible prototypes. The [following batch](activity-expansion.md) brings it to 18. Shared placements count once. Each remains an educational draft requiring educator review.
 
 | Material                             | Rooms     | Interaction and limitation                                                                                                                                               |
 | ------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -36,4 +36,4 @@ To regenerate, provide both downloaded GeoJSON files (regions, then land) to tha
 
 ## Requested feedback
 
-All 15 active modules implement the optional `checkWork(state)` observation contract. The host displays it on request, marks it stale after further interaction, clears it on reset, and automatically confirms completion. Editable feedback copy is in `src/content/en/feedback.ts`. No scores, rewards, or constant correction prompts are added. `scripts/browser-feedback-check.py` checks this flow in both an original material and a new elementary activity.
+All accessible modules implement the optional `checkWork(state)` observation contract. The host displays it on request, marks it stale after further interaction, clears it on reset, and automatically confirms completion. Editable feedback copy is in `src/content/en/feedback.ts`. No scores, rewards, or constant correction prompts are added. `scripts/browser-feedback-check.py` checks this flow in both an original material and a new elementary activity.

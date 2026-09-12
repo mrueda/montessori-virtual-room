@@ -23,6 +23,8 @@ For optional browser checks, install Python Playwright and provide Chromium. Set
 
 Current browser checks:
 
+- `scripts/browser-drawing-table-check.py` — tracing, drawing export, table preparation, 3D and touch.
+- `scripts/browser-expansion-check.py` — composition, tray pouring, checkerboard exchanges, and touch layouts.
 - `scripts/browser-authenticity-check.py` — withdrawn materials stay unavailable.
 - `scripts/browser-environments-check.py` — room selection and accessible tours.
 - `scripts/browser-elementary-check.py` — new activity completion, reset, examples, and touch interaction.

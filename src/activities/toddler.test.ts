@@ -9,11 +9,12 @@ import {
 describe("Toddler materials", () => {
   it("keeps toddler and primary collections separate", () => {
     expect(materialsForRoom(toddlerRoom).map((m) => m.id)).toEqual([
+      "table-setting",
       "transferring",
       "pouring",
       "shape-puzzle",
     ]);
-    expect(materialsForRoom(primaryRoom)).toHaveLength(10);
+    expect(materialsForRoom(primaryRoom)).toHaveLength(14);
   });
   it("defines valid default scenes and keeps room materials unique across views", () => {
     for (const room of [primaryRoom, toddlerRoom]) {
@@ -30,8 +31,11 @@ describe("Toddler materials", () => {
       "childrens-house-overview",
       "practical-life-corner",
       "sensorial-corner",
+      "language-corner",
       "mathematics-corner",
       "culture-corner",
+      "art-studio",
+      "grace-courtesy-space",
     ]);
     expect(
       materialsForRoom(primaryRoom).some(
