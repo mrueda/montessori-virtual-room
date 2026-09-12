@@ -29,5 +29,7 @@
     "typescript": "~5.9.2",
     "vite": "^6.3.6",
     "vitest": "^4.1.11"
-  }
+  },
+  "license": "MIT",
+  "author": "Manuel Rueda"
 }

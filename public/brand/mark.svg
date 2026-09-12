@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Montessori Virtual Room</title>
+  <desc id="desc">An open room surrounding three graduated pink cubes.</desc>
+  <rect width="128" height="128" rx="26" fill="#f5f1e6"/>
+  <path d="M20 41 64 16 108 41V90L64 115 20 90Z" fill="#e6e9dc"/>
+  <path d="M20 41 64 16V65L20 90Z" fill="#c8d2bc"/>
+  <path d="M64 16 108 41V90L64 65Z" fill="#dce2cf"/>
+  <path d="M20 90 64 65 108 90 64 115Z" fill="#eadbc0"/>
+  <path d="M20 70V41L64 16 108 41V70M64 16V37" fill="none" stroke="#4d6549" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 90 64 115 108 90" fill="none" stroke="#4d6549" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M46 76 64 86V109L46 99Z" fill="#c47784"/>
+  <path d="M64 86 82 76V99L64 109Z" fill="#a95f70"/>
+  <path d="M46 76 64 66 82 76 64 86Z" fill="#e0a6af"/>
+  <path d="M52 60 64 67V83L52 76Z" fill="#cd8591"/>
+  <path d="M64 67 76 60V76L64 83Z" fill="#b16a79"/>
+  <path d="M52 60 64 53 76 60 64 67Z" fill="#e6b3bb"/>
+  <path d="M57 50 64 54V64L57 60Z" fill="#d4909c"/>
+  <path d="M64 54 71 50V60L64 64Z" fill="#bb7584"/>
+  <path d="M57 50 64 46 71 50 64 54Z" fill="#ecc1c6"/>
+</svg>

@@ -11,7 +11,7 @@ The application is a static Vite SPA with no server, credentials, payment proces
 
 If the production branch is different, change the workflow's push/pull-request branch lists and both `refs/heads/main` deployment conditions. Configure environment protection consistently. No personal access token or custom deployment secret is required; the workflow uses GitHub's scoped token and Pages OIDC deployment permissions.
 
-**Publication is on hold at the founder’s request.** The local repository is connected to the private `mrueda/montessori-virtual-room` repository. Do not change visibility, push a publishing release, or enable Pages until the founder explicitly approves after further app improvements. The founder has authorized staging, committing, and pushing the private prototype. This does not authorize public release or enabling Pages. The account currently uses GitHub Free, so Pages cannot publish directly from this private repository.
+**Publication is authorized by the founder.** The repository is public at `mrueda/montessori-virtual-room`, and GitHub Pages is configured to use Actions. The site address is <https://mrueda.github.io/montessori-virtual-room/>. Ordinary pushes verify the app; publishing requires a manual run with `publish` enabled. Local working notes are ignored and are not part of repository history.
 
 ## Build and URL behavior
 

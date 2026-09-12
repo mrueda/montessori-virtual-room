@@ -97,9 +97,13 @@ export default function App() {
           href={import.meta.env.BASE_URL}
           aria-label="Montessori Virtual Room home"
         >
-          <span className="brand-mark">
-            <Sprout size={25} strokeWidth={1.4} />
-          </span>
+          <img
+            className="brand-mark"
+            src={`${import.meta.env.BASE_URL}brand/mark.svg`}
+            alt=""
+            width="48"
+            height="48"
+          />
           <span>
             Montessori Virtual Room
             <span className="brand-subtitle">EXPLORE. PRACTICE. DISCOVER.</span>
@@ -458,7 +462,14 @@ export default function App() {
       )}
       <footer>
         <span className="footer-brand">
-          <Sprout size={17} /> Montessori Virtual Room
+          <img
+            className="footer-mark"
+            src={`${import.meta.env.BASE_URL}brand/mark.svg`}
+            alt=""
+            width="28"
+            height="28"
+          />{" "}
+          Montessori Virtual Room
         </span>
         <p>A free Montessori resource for families and educators.</p>
         <span>EXPLORE AT YOUR OWN PACE</span>

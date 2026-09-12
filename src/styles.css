@@ -91,14 +91,14 @@ p {
 }
 .brand-mark {
   flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border: 1px solid #c7cdb8;
-  border-radius: 50% 50% 44% 44%;
-  width: 43px;
-  height: 49px;
-  color: #647951;
+  display: block;
+  width: 48px;
+  height: 48px;
 }
+.footer-mark {
+  vertical-align: middle;
+}
+
 .brand-subtitle {
   display: block;
   font-family: "DM Sans", sans-serif;
@@ -972,8 +972,8 @@ footer > span:last-child {
     letter-spacing: 1.5px;
   }
   .brand-mark {
-    width: 34px;
-    height: 41px;
+    width: 38px;
+    height: 38px;
   }
   .guide-link,
   .nav-divider {
