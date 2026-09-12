@@ -1,0 +1,115 @@
+"""Optional UI smoke checks: pip install playwright; use installed Chromium.
+Run against npm run dev: python3 scripts/browser-check.py
+Set CHROMIUM_PATH if Chromium is not at /snap/bin/chromium.
+"""
+import os
+from playwright.sync_api import sync_playwright, expect
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH', '/snap/bin/chromium'), headless=True, args=['--no-sandbox', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'])
+    page = browser.new_page(viewport={'width':1440,'height':1100})
+    errors=[]
+    page.on('pageerror', lambda e: errors.append(e.stack))
+    page.goto('http://127.0.0.1:5173', wait_until='networkidle')
+    expect(page.locator('canvas')).to_have_count(1)
+    expect(page.locator('.empty-area')).to_have_count(0)
+    page.wait_for_timeout(1500)
+    page.screenshot(path='/tmp/montessori-desktop.png',full_page=True)
+    def start(id):
+        page.locator('.material-card.'+id).click()
+        page.get_by_role('button',name='Begin the activity').click()
+    def leave():
+        page.get_by_role('button',name='Back to the classroom').click()
+    def complete(fragment):
+        expect(page.get_by_role('status')).to_contain_text(fragment)
+    start('pink-tower')
+    for n in range(10,0,-1):
+        page.get_by_role('button',name=f'Select cube {n},').click()
+        page.get_by_role('button',name='Place selected cube').focus()
+        page.keyboard.press('Enter')
+    complete('Your tower is complete')
+    leave()
+    start('cylinder-blocks')
+    for n in range(1,11): page.get_by_role('button',name=f'Lift cylinder {n}',exact=True).click()
+    page.get_by_role('button',name='Select cylinder 10',exact=True).click()
+    page.get_by_role('button',name='Try socket 1,').click()
+    expect(page.get_by_text('The cylinder rests above the opening. Compare the widths.')).to_be_visible()
+    for n in range(10,0,-1):
+        page.get_by_role('button',name=f'Select cylinder {n}',exact=True).click()
+        page.get_by_role('button',name=f'Try socket {n},').click()
+    complete('Every cylinder is back')
+    page.screenshot(path='/tmp/montessori-cylinders.png',full_page=True)
+    page.get_by_role('button',name='Start again',exact=True).click()
+    expect(page.get_by_role('status')).not_to_contain_text('Every cylinder')
+    leave()
+    start('color-tablets')
+    page.get_by_role('button',name='Choose red tablet one').click()
+    page.get_by_role('button',name='Choose blue tablet one').click()
+    page.get_by_role('button',name='Separate red and blue pair').click()
+    for color in ['red','yellow','blue']:
+        for number in ['one','two']: page.get_by_role('button',name=f'Choose {color} tablet {number}').click()
+    complete('Each color has a companion')
+    page.screenshot(path='/tmp/montessori-colors.png',full_page=True)
+    leave()
+    start('dressing-frame')
+    expect(page.get_by_role('button',name='Separate the fabric')).to_be_disabled()
+    for n in range(1,5): page.get_by_role('button',name=f'Open button {n}').click()
+    page.get_by_role('button',name='Separate the fabric').click()
+    expect(page.get_by_role('button',name='Close button 1')).to_be_disabled()
+    page.get_by_role('button',name='Bring the fabric together').click()
+    for n in range(1,5): page.get_by_role('button',name=f'Close button {n}').click()
+    complete('every button is fastened')
+    page.screenshot(path='/tmp/montessori-dressing.png',full_page=True)
+    leave()
+    start('pouring')
+    page.get_by_role('button',name='Pick up the pitcher').click()
+    page.get_by_role('button',name='Move over the cup').click()
+    page.get_by_role('slider',name='Tilt the pitcher').fill('80')
+    expect(page.get_by_role('button',name='Return pitcher to tray')).to_be_disabled()
+    expect(page.get_by_text('The pitcher is empty. Bring it upright and return it to the tray.')).to_be_visible(timeout=10000)
+    page.get_by_role('button',name='Bring the pitcher upright').click()
+    page.get_by_role('button',name='Return pitcher to tray').click()
+    complete('The water has been poured')
+    page.screenshot(path='/tmp/montessori-pouring.png',full_page=True)
+    leave()
+    page.locator('.material-card.pink-tower').click()
+    page.get_by_role('button',name='Read the parent & educator notes').click()
+    expect(page.get_by_text('Direct aim',exact=True)).to_be_visible()
+    page.keyboard.press('Escape')
+    expect(page.get_by_role('dialog')).to_have_count(0)
+    page.get_by_role('button',name='Language',exact=True).click()
+    expect(page.locator('.empty-area')).to_be_visible()
+    page.get_by_role('button',name='All materials',exact=True).click()
+    mobile=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
+    mobile.on('pageerror',lambda e: errors.append(e.stack))
+    mobile.goto('http://127.0.0.1:5173',wait_until='networkidle')
+    assert mobile.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
+    mobile.screenshot(path='/tmp/montessori-mobile.png',full_page=True)
+    for id in ['pink-tower','cylinder-blocks','color-tablets','dressing-frame','pouring']:
+        mobile.locator('.material-card.'+id).tap()
+        mobile.get_by_role('button',name='Begin the activity').tap()
+        assert mobile.evaluate('document.documentElement.scrollWidth <= window.innerWidth'), id
+        if id=='pink-tower':
+            mobile.get_by_role('button',name='Select cube 10, largest').tap()
+            mobile.get_by_role('button',name='Place selected cube').tap()
+            expect(mobile.locator('.stack-cube')).to_have_count(1)
+        elif id=='cylinder-blocks':
+            mobile.get_by_role('button',name='Lift cylinder 1',exact=True).tap()
+            mobile.get_by_role('button',name='Select cylinder 1',exact=True).tap()
+            mobile.get_by_role('button',name='Try socket 1,').tap()
+        elif id=='color-tablets':
+            mobile.get_by_role('button',name='Choose red tablet one').tap()
+            mobile.get_by_role('button',name='Choose red tablet two').tap()
+            expect(mobile.locator('.tablet-pair')).to_have_count(1)
+        elif id=='dressing-frame':
+            mobile.get_by_role('button',name='Open button 1').tap()
+            expect(mobile.get_by_role('button',name='Close button 1')).to_be_visible()
+        else:
+            mobile.get_by_role('button',name='Pick up the pitcher').tap()
+            mobile.get_by_role('button',name='Move over the cup').tap()
+            expect(mobile.get_by_role('slider')).to_be_enabled()
+        mobile.get_by_role('button',name='Back to the classroom').tap()
+    print('PASS: all five completion paths, correction, reset, content, filters, mobile layouts and touch interaction')
+    assert not errors, '\n'.join(errors)
+    print('PASS: no browser runtime errors')
+    browser.close()

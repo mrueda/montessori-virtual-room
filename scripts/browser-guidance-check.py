@@ -1,0 +1,52 @@
+"""Checks animated guidance and isolation from the learner's activity state."""
+import os
+from playwright.sync_api import sync_playwright,expect
+with sync_playwright() as p:
+    browser=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/snap/bin/chromium'),headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+    page=browser.new_page(viewport={'width':1440,'height':1100})
+    errors=[]
+    page.on('pageerror',lambda e:errors.append(e.stack))
+    page.goto('http://127.0.0.1:5173/',wait_until='networkidle')
+    page.locator('.material-card.pink-tower').click()
+    page.get_by_role('button',name='Begin the activity').click()
+    page.get_by_role('button',name='Select cube 10, largest').click()
+    page.get_by_role('button',name='Place selected cube').focus()
+    page.keyboard.press('Enter')
+    page.get_by_role('button',name='Guidance',exact=True).click()
+    page.get_by_role('button',name='Watch a demonstration').click()
+    dialog=page.get_by_role('dialog')
+    expect(dialog.locator('canvas')).to_be_visible(timeout=15000)
+    first=dialog.locator('canvas').screenshot()
+    page.wait_for_timeout(500)
+    second=dialog.locator('canvas').screenshot()
+    assert first!=second,'The demonstration should visibly move its objects'
+    dialog.get_by_role('button',name='Pause demonstration').click()
+    expect(dialog.get_by_role('button',name='Play demonstration')).to_be_visible()
+    dialog.get_by_role('button',name='Next step').click()
+    page.screenshot(path='/tmp/montessori-guided-movement.png',full_page=True)
+    dialog.get_by_role('button',name='Return to my work').click()
+    expect(page.locator('.stack-cube')).to_have_count(1)
+    page.get_by_role('button',name='Back to the classroom').click()
+    page.emulate_media(reduced_motion='reduce')
+    for id in ['pink-tower','cylinder-blocks','color-tablets','dressing-frame','pouring','transferring','shape-puzzle']:
+        if id=='transferring':page.get_by_label('YOUR LEARNING ENVIRONMENT').select_option('18m-3y')
+        page.locator('.material-card.'+id).click()
+        page.get_by_role('button',name='Begin the activity').click()
+        page.get_by_role('button',name='Guidance',exact=True).click()
+        page.get_by_role('button',name='Watch a demonstration').click()
+        dialog=page.get_by_role('dialog')
+        expect(dialog.locator('canvas')).to_be_visible(timeout=15000)
+        expect(dialog.get_by_role('button',name='Play demonstration')).to_be_visible()
+        for _ in range(25):
+            next_step=dialog.get_by_role('button',name='Next step')
+            if next_step.is_disabled():break
+            next_step.click()
+        expect(dialog.get_by_role('status')).to_contain_text('The example is complete')
+        dialog.get_by_role('button',name='Replay',exact=True).click()
+        expect(dialog.get_by_role('button',name='Next step')).to_be_enabled()
+        page.keyboard.press('Escape')
+        expect(page.get_by_role('dialog')).to_have_count(0)
+        page.get_by_role('button',name='Back to the classroom').click()
+    assert not errors,'\n'.join(errors)
+    print('PASS: visible animated travel, pause/play, stepping, all seven solutions, replay, Escape, reduced-motion behavior, and preserved learner work')
+    browser.close()

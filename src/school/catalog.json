@@ -1,0 +1,10 @@
+[
+  {
+    "id": "demo-greenwood",
+    "slug": "greenwood",
+    "name": "Greenwood Montessori",
+    "tagline": "A shared place for our families.",
+    "accessMode": "demo",
+    "rooms": ["18m-3y", "3-6y"]
+  }
+]

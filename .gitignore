@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env*
+!.env.example
+
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Local working-session context
+SESSION_NOTES.md

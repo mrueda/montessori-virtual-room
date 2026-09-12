@@ -1,0 +1,61 @@
+"""Checks the school mockup, larger-text layouts, and a built Pages subpath."""
+import os
+from playwright.sync_api import sync_playwright, expect
+with sync_playwright() as p:
+    browser=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/snap/bin/chromium'),headless=True,args=['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+    page=browser.new_page(viewport={'width':1440,'height':1100})
+    errors=[]
+    page.on('pageerror',lambda e:errors.append(e.stack))
+    page.goto('http://127.0.0.1:5173/?preview=school',wait_until='networkidle')
+    expect(page.get_by_role('heading',name='Willow Montessori',exact=True)).to_be_visible()
+    page.wait_for_timeout(800)
+    page.screenshot(path='/tmp/montessori-school-parent.png',full_page=True)
+    page.get_by_role('button',name='Make it your school').click()
+    page.get_by_label('School name',exact=True).fill('Our Montessori School')
+    page.get_by_label('School message',exact=True).fill('A shared place for our families.')
+    page.get_by_role('button',name='Apply to the preview').click()
+    expect(page.get_by_role('heading',name='Our Montessori School',exact=True)).to_be_visible()
+    page.get_by_role('button',name='Educator library',exact=True).click()
+    page.get_by_role('textbox',name='Search the material library').fill('Pouring')
+    expect(page.locator('.library-row')).to_have_count(1)
+    page.locator('.library-row').click()
+    expect(page.get_by_text('Direct aim',exact=True)).to_be_visible()
+    page.keyboard.press('Escape')
+    page.get_by_role('button',name='School overview').click()
+    expect(page.get_by_text('These numbers are examples. No family accounts, tracking, or reporting are connected.')).to_be_visible()
+    page.screenshot(path='/tmp/montessori-school-dashboard.png',full_page=True)
+    page.get_by_role('button',name='Preview family experience').click()
+    expect(page.get_by_role('heading',name='A window into')).to_be_visible()
+    page.get_by_role('button',name='Step inside the classroom').click()
+    expect(page.get_by_role('heading',name='A room for curiosity.')).to_be_visible()
+    assert page.locator('.card-description').first.evaluate('e=>parseFloat(getComputedStyle(e).fontSize)')>=14
+    page.screenshot(path='/tmp/montessori-readable-desktop.png',full_page=True)
+    mobile=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
+    mobile.on('pageerror',lambda e:errors.append(e.stack))
+    mobile.goto('http://127.0.0.1:5173/?preview=school',wait_until='networkidle')
+    assert mobile.evaluate('document.documentElement.scrollWidth<=innerWidth')
+    mobile.screenshot(path='/tmp/montessori-school-mobile.png',full_page=True)
+    for name in ['Educator library','School overview','For families']:
+        mobile.get_by_role('button',name=name).tap()
+        assert mobile.evaluate('document.documentElement.scrollWidth<=innerWidth'),name
+    mobile.get_by_role('button',name='Step inside the classroom').tap()
+    assert mobile.evaluate('document.documentElement.scrollWidth<=innerWidth')
+    mobile.screenshot(path='/tmp/montessori-readable-mobile.png',full_page=True)
+    # Production build served with npm run preview -- --base=/montessori-virtual-room/
+    deployed=browser.new_page(viewport={'width':1280,'height':1000})
+    failed=[]
+    deployed.on('pageerror',lambda e:errors.append(e.stack))
+    deployed.on('response',lambda r:failed.append(r.url) if r.status>=400 and '127.0.0.1:4173' in r.url else None)
+    deployed.goto('http://127.0.0.1:4173/montessori-virtual-room/?preview=school',wait_until='networkidle')
+    expect(deployed.get_by_role('heading',name='Willow Montessori',exact=True)).to_be_visible()
+    expect(deployed.get_by_role('link',name='Montessori Virtual Room home')).to_have_attribute('href','/montessori-virtual-room/')
+    deployed.get_by_role('link',name='Montessori Virtual Room home').click()
+    expect(deployed.get_by_role('heading',name='A room for curiosity.')).to_be_visible()
+    deployed.locator('.material-card.pink-tower').click()
+    deployed.get_by_role('button',name='Begin the activity').click()
+    deployed.get_by_role('button',name='3D',exact=True).click()
+    expect(deployed.locator('.activity-stage canvas')).to_be_visible(timeout=15000)
+    assert not failed,failed
+    assert not errors,'\n'.join(errors)
+    print('PASS: school portal, custom school name, library search, adult notes, sample dashboard, larger text, mobile reflow, and production subpath with lazy 3D assets')
+    browser.close()
